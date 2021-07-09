@@ -1,3 +1,9 @@
+/**
+ * mani703-math.js npm 모듈 테스트(모듈 패키지: 로컬 배포)
+ * npm i ../mani703-math
+ * 명령으로 설치 후, 테스트 할 것
+ */
+
 const mnMath = require('mani703-math')
 
 console.log(mnMath.sum(1, 2, 3, 4));
