@@ -1,4 +1,4 @@
-exports.sum = function(){
+exports.sum = function () {
     let sum = 0;
     Array.from(arguments).forEach(e => {
         sum += e;
@@ -6,7 +6,7 @@ exports.sum = function(){
     return sum
 }
 
-exports.max = function(){
+exports.max = function () {
     let max = Number.MIN_SAFE_INTEGER;
     Array.from(arguments).forEach(e => {
         max = e > max ? e : max;
@@ -15,7 +15,7 @@ exports.max = function(){
 }
 
 
-exports.min = function(){
+exports.min = function () {
     let min = Number.MAX_SAFE_INTEGER;
     Array.from(arguments).forEach(e => {
         min = e < min ? e : min;
