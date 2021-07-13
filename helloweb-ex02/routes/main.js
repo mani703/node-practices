@@ -1,9 +1,9 @@
 const express = require('express');
 
 const router = express.Router();
-router.route("").get(function(req, res){
-    res.writeHead(200, {'Content-Type': 'text/html'});
-    res.end('main');   
+
+router.route("").get(function(req, res){ // http://localhost:8080
+    res.render('main/index'); // main/index.ejs
 });
 
 module.exports = router;

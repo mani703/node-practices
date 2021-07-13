@@ -38,7 +38,7 @@ Node(JavaSctipt) Project (Application, Package) 생성
    패키지 설치 방법: 1. 로컬 배포
                      2. 원격 배포    
 
-============================================
+=============================================================
 npmjs.com npm registry에 패키지 배포하기.
 1. 사용자 등록
 $ npm adduser
@@ -49,7 +49,7 @@ Logged....
 2. 업로드
 [douzone-busan-bitacademy]$ npm publish
 
-============================================
+=============================================================
 맨바닥에서 웹애플리케이션 만들어보기
 helloweb-ex01
 app01. based on http : core module
@@ -57,6 +57,7 @@ app02. based on (http, fs) : core module
 app03. based on (connect, serve-static) : npm package(module)
 app04. based on (connect, serve-static, connect-route) : npm package(module)
 
+=============================================================
 helloweb-ex02 based on express : npm package(module)
 [helloweb-ex02] npm init -y
 
@@ -79,4 +80,28 @@ package.json 스크립트 수정
 [helloweb-ex02] mkdir controllers
 [helloweb-ex02] mkdir models
 
-index.js 작성
+=============================================================
+emaillist01 (model based mysql) - 기본 sql 기반
+emaillist02 (model based sequelizer) - ORM
+
+[emaillist01] npm init -y
+
+[emaillist01] npm i express
+[emaillist01] npm i ejs
+[emaillist01] npm i mysql
+[emaillist01] npm i -D nodemon
+
+package.json 스크립트 수정
+ "scripts": {
+    "start": "node index.js",
+    "debug": "nodemon index.js"
+  }
+
+[emaillist01] npm start     (운용시)
+[emaillist01] npm run debug (개발시...Live Update)
+
+[emaillist01] mkdir routes
+[emaillist01] mkdir controllers
+[emaillist01] mkdir models
+[emaillist01] mkdir public
+[emaillist01] mkdir views
