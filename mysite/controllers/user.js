@@ -1,3 +1,5 @@
+const User = require('../models/User');
+
 module.exports = {
     joinsuccess: function(req, res){
         res.render('user/joinsuccess');
