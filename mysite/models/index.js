@@ -8,6 +8,7 @@ const sequelize = new Sequelize(process.env.DB_NAME, process.env.DB_USER, proces
 );
 
 const User = require('./User')(sequelize);
+const Guestbook = require('./Guestbook')(sequelize);
          
 // User 객체와 테이블 sync를 맞춘다
 User.sync({
@@ -16,4 +17,9 @@ User.sync({
                                                             //               테이블에서 필요한 변경을 수행하여 모델과 일치하도록 합니다.
 });
 
-module.exports = { User }
+Guestbook.sync({
+    force: process.env.TABLE_CREATE_ALWAYS === 'true',
+    alter: process.env.TABLE_ALTER_SYNC === 'true'
+});
+
+module.exports = { User, Guestbook }

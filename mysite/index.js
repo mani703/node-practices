@@ -1,6 +1,7 @@
+const express = require('express');
+const session = require('express-session');
 const http = require('http');
 const path = require('path');
-const express = require('express');
 const dotenv = require('dotenv')
 
 // Environment Variables(환경변수)
@@ -9,19 +10,26 @@ dotenv.config({path: path.join(__dirname, 'config/db.env')});
 
 const mainRouter = require('./routes/main');
 const userRouter = require('./routes/user');
+const guestbookRouter = require('./routes/guestbook');
 
 
 // Application Setup
 const application = express()
     // 1. static serve 
     .use(express.static(path.join(__dirname, process.env.STATIC_RESOURCES_DIRECTORY)))
-    // 2. request body parser
+    // 2. session environment
+    .use(session({
+        secret: 'mysite-session',   // 쿠키 변조를 방지하기 위한 값
+        resave: false,              // 요청 처리에서 세션의 변경사항 없어도 항상 저장
+        saveUninitailized: false    // 새로 세션을 생상할 때 "uninitialized" 상태로 둔다. 따라서 로그인 세션에서는 false로 둔다.
+    }))
+    // 3. request body parser
     .use(express.urlencoded({extended: true})) // application/x-www-form-urlencoded
     .use(express.json())                       // application/json
-    // 3. view engine setup
+    // 4. view engine setup
     .set('views', path.join(__dirname, 'views'))
     .set('view engine', 'ejs')
-    // 4. request router
+    // 5. request router
     .all('*', function(req, res, next) {
         res.locals.req = req;
         res.locals.res = res;
@@ -29,6 +37,7 @@ const application = express()
     })
     .use('/', mainRouter)
     .use('/user', userRouter)
+    .use('/guestbook', guestbookRouter)
     .use((req,res) => res.render('error/404'));
 
 // Server Setup    
