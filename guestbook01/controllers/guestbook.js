@@ -17,7 +17,7 @@ module.exports = {
         });
     },
     delete: async function(req, res){
-        const results = await model.delete(req.body);
+        await model.delete(req.body);
         res.redirect("/");
     }
 }
