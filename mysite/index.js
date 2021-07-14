@@ -3,11 +3,13 @@ const path = require('path');
 const express = require('express');
 const dotenv = require('dotenv')
 
+// Environment Variables(환경변수)
+dotenv.config({path: path.join(__dirname, 'config/app.env')});
+dotenv.config({path: path.join(__dirname, 'config/db.env')});
+
 const mainRouter = require('./routes/main');
 const userRouter = require('./routes/user');
 
-// Environment Variables(환경변수)
-dotenv.config({path: path.join(__dirname, 'config/app.env')});
 
 // Application Setup
 const application = express()
