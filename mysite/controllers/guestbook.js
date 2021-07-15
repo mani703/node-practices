@@ -1,5 +1,6 @@
 const { Sequelize } = require('sequelize');
 const models = require('../models');
+const moment = require('moment');
 
 module.exports = {
     list: async function (req, res) {
@@ -8,23 +9,19 @@ module.exports = {
                 'no', 
                 'name', 
                 'message', 
-                [Sequelize.fn("date_format", Sequelize.col("reg_date"), "%Y-%m-%d %h:%m"), "regDate"]
+                'regDate'
             ],
             order: [
                 ['regDate', 'DESC']
             ]
         })
         res.render('guestbook/list', {
-            list: results || []
+            list: results || [],
+            moment: moment
         });
     },
-    _list: async function(req, res){
-        console.log(req.body);
-        const result = await models.Guestbook.create({
-            name: req.body.name,
-            password: req.body.password,
-            message: req.body.message,
-        });
+    add: async function(req, res){
+        await models.Guestbook.create(req.body);
         res.redirect('/guestbook');
     },
     delete: function(req, res){

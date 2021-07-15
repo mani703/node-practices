@@ -10,7 +10,7 @@
 		<%-include('../includes/header')%>
 		<div id="content">
 			<div id="guestbook">
-				<form action="/guestbook" method="post">
+				<form action="/guestbook/add" method="post">
 					<table>
 						<tr>
 							<td>이름</td><td><input type="text" name="name"></td>
@@ -35,7 +35,7 @@
 							<tr>
 								<td>[<%=count-i %>]</td>
 								<td><%=vo.name %></td>
-								<td><%=vo.regDate %></td>
+								<td><%=moment(vo.regDate).format('YYYY-MM-DD hh:mm:ss') %></td>
 								<td><a href="/guestbook/delete/<%=vo.no %>">삭제</a></td>
 							</tr>
 							<tr>

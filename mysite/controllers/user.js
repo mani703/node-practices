@@ -14,7 +14,6 @@ module.exports = {
             password: req.body.password,
             gender: req.body.gender
         });
-        console.log(result);
         res.redirect('/user/joinsuccess');
     },
     login: function (req, res) {
@@ -31,7 +30,6 @@ module.exports = {
         if (user == null) {
             res.render('user/login', Object.assign(req.body, {
                 result: 'fail',
-                password: '',
             }));
             return;
         }
@@ -45,7 +43,7 @@ module.exports = {
     },
     update: async function (req, res) {
         const user = await models.User.findOne({
-            attributes: ['email', 'gender'],
+            attributes: ['no', 'email', 'name', 'gender'],
             where: {
                 no: req.session.authUser.no
             }
@@ -55,11 +53,10 @@ module.exports = {
         });
     },
     _update: async function (req, res) {
-        const result = await models.User.uspdate({
+        await models.User.update({
             name: req.body.name || req.session.authUser.name,
-            password: req.body.password || req.session.authUser.name,
-            gender: req.body.gender
-        }, {
+            password: req.body.password || req.session.authUser.password,
+            gender: req.body.gender}, {
             where: {
                 no: req.session.authUser.no
             }
