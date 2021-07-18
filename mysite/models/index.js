@@ -9,6 +9,7 @@ const sequelize = new Sequelize(process.env.DB_NAME, process.env.DB_USER, proces
 
 const User = require('./User')(sequelize);
 const Guestbook = require('./Guestbook')(sequelize);
+const Gallery = require('./Gallery')(sequelize);
          
 // User 객체와 테이블 sync를 맞춘다
 User.sync({
@@ -16,10 +17,13 @@ User.sync({
     alter: process.env.TABLE_ALTER_SYNC === 'true'          // alter: true - 테이블의 현재 상태(열이 있는 열, 데이터 유형이 무엇인지 등)를 확인한 다음 
                                                             //               테이블에서 필요한 변경을 수행하여 모델과 일치하도록 합니다.
 });
-
 Guestbook.sync({
     force: process.env.TABLE_CREATE_ALWAYS === 'true',
     alter: process.env.TABLE_ALTER_SYNC === 'true'
 });
+Gallery.sync({
+    force: process.env.TABLE_CREATE_ALWAYS === 'true',
+    alter: process.env.TABLE_ALTER_SYNC === 'true'
+});
 
-module.exports = { User, Guestbook }
+module.exports = { User, Guestbook, Gallery }

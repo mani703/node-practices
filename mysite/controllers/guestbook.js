@@ -48,5 +48,8 @@ module.exports = {
         } catch (e) {
             next(e);
         }
+    },
+    spaLanding: function(req, res, next){
+        res.render('guestbook/spa-landing');
     }
 }

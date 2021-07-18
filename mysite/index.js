@@ -36,7 +36,7 @@ const application = express()
     // 3. multipart
     .use(multer({
         dest: path.join(__dirname, process.env.MULTER_TEMPORARY_STORE)
-    }).single('file'))
+    }).single('file')) // <input type="file" id="input-file" name="file"> name 이름이랑 같아야 한다.
     // 4. static serve 
     .use(express.static(path.join(__dirname, process.env.STATIC_RESOURCES_DIRECTORY)))
     // 5. view engine setup
