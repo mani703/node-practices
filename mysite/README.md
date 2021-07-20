@@ -1,28 +1,37 @@
-# MySite on Node(Express)
+# mysite Powered by Node(Express)
 
-## project mainfest 파일(package.json) 생성
-$npm init -y
-
-## 설치패키지
+## 설치 패키지
+```bash
 $ npm i express
 $ npm i express-session
+$ npm i serve-favicon
 $ npm i ejs
-$ npm i dotenv
-$ npm i sequelize 
-$ npm i mysql2
-$ npm i multer
 $ npm i moment
+$ npm i sequelize
+$ npm i mysql2
+$ npm i dotenv
+$ npm i multer
 $ npm i winston
 $ npm i winston-daily-rotate-file
+
+$ npm i -D mocha
+$ npm i -D chai
 $ npm i -D nodemon
+```
 
 ## scripts in package.json
 ```JSON
-
-"scripts": {
+.
+.
+  "scripts": {
     "start": "node index.js",
+    "test": "npx mocha",
     "debug": "nodemon index.js"
-  },
+  }
+.
+.
+```
+
 
 ## project structure
 <pre>
@@ -30,22 +39,30 @@ $ npm i -D nodemon
     |--- index.js
     |--- package.json
     |--- package-lock.json
-    |--- /node-modules
-    |--- /config
-    |--- /logging
-    |--- /logs
-    |--- /multer-temporary-store
-    |--- /public
-            |--- /assets
-                    |--- gallery
-    |--- /routes
-    |--- /controllers
-    |--- /models
-    |--- /views
-            |--- /main
-            |--- /user
-            |--- /guestbook
-            |--- /board
-            |--- /gallery
-            |--- /admin
+    |--- [node_modules]
+    |--- test
+    |--- logging
+    |--- [logs]
+    |       |--- [error]
+    |--- [multer-temporary-store]
+    |--- config
+    |--- public
+    |       |--- assets
+    |               |--- js
+    |               |--- css
+    |               |--- images
+    |               |--- [upload-images]
+    |--- routes
+    |--- controllers
+    |       |--- admin
+    |--- models
+    |--- views
+            |--- main
+            |--- admin
+            |       |--- includes
+            |--- user
+            |--- board
+            |--- guestbook
+            |--- gallery
+            |--- includes
 </pre>
