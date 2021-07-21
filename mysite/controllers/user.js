@@ -13,7 +13,7 @@ module.exports = {
                 name: req.body.name,
                 email: req.body.email,
                 password: req.body.password,
-                gender: req.body.gender
+                gender: req.body.gender,
             });
             res.redirect('/user/joinsuccess');
         } catch (e) {

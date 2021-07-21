@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>mysite</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<link href="/assets/css/board.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+	<div id="container">
+		<%-include('../includes/header')%>
+		<div id="content">
+			<div id="board">
+				<form id="search_form" action="" method="post">
+					<input type="text" id="kwd" name="kwd" value="">
+					<input type="submit" value="찾기">
+				</form>
+				<table class="tbl-ex">
+					<tr>
+						<th>번호</th>
+						<th>제목</th>
+						<th>글쓴이</th>
+						<th>조회수</th>
+						<th>작성일</th>
+						<th>&nbsp;</th>
+					</tr>				
+
+					<%
+						for(var i = 0; i < list.length; i++) {
+							const vo = list[i];
+							const count = list.length;
+					%>
+						<tr>
+							<td><%=list.length-i %></td>
+							<% if(vo.depth == 0) { %>
+							<td style="text-align:left; padding-left: 0px;"><a href="/board/view/<%=vo.no %>"><%=vo.title %></a></td>
+							<% } else { %>
+							<td style="text-align: left; padding-left: <%=vo.depth*20 %>px;"><img src='/assets/images/reply.png'/><a href="/board/view/<%=vo.no %>"><%=vo.title %></a></td>
+							<% } %>
+							<td><%=vo.User.name %></td>
+							<td><%=vo.hit %></td>
+							<td><%=moment(vo.regDate).format('YYYY-MM-DD hh:mm:ss') %></td>
+							<% if(req.session.authUser && req.session.authUser.no == vo.User.no) { %>
+							<td><a href="/board/delete/<%=pager.currentPage%>/<%=vo.no%>" class="del" style='background-image:url("/assets/images/recycle.png"); background-color:aqua;'>삭제</a></td>
+							<% } %>
+						</tr>
+					<%
+						}
+					%>
+				</table>
+
+				<div class="pager">
+					<ul>
+						<% if(pager.currentPage != 1) { %>
+							<li><a href="/board/<%=pager.currentPage-1%>">◀</a></li>	
+						<% } %>
+
+						<% 
+						for(var i = pager.blockStart; i <= pager.blockLast; i++){ 
+						%>
+							<% if(i > pager.lastPage){ %>
+								<li><%=i %></li>
+							<% } else if(i == pager.currentPage) { %>
+								<li class="selected"><%=i %> </li>
+							<% } else { %>
+								<li><a href="/board/<%=i %>"><%=i %></a></li>
+							<% } %>
+						<% 
+						} 
+						%>
+
+						<% if(pager.currentPage != pager.lastPage) { %>
+							<li><a href="/board/<%=pager.currentPage+1%>">▶</a></li>
+						<% } %>
+					</ul>
+				</div>
+
+				<div class="bottom">
+					<% if(req.session.authUser) { %>
+					<a href="/board/write/<%=req.session.authUser.no%>" id="new-book">글쓰기</a>
+					<% } %>
+				</div>		
+				
+				
+			</div>
+		</div>
+		<%-include('../includes/navigation')%>
+		<%-include('../includes/footer')%>
+	</div>
+</body>
+</html>
