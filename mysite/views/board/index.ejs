@@ -34,7 +34,7 @@
 							<% if(vo.depth == 0) { %>
 							<td style="text-align:left; padding-left: 0px;"><a href="/board/view/<%=vo.no %>"><%=vo.title %></a></td>
 							<% } else { %>
-							<td style="text-align: left; padding-left: <%=vo.depth*20 %>px;"><img src='/assets/images/reply.png'/><a href="/board/view/<%=vo.no %>"><%=vo.title %></a></td>
+							<td style="text-align:left; padding-left: <%=vo.depth*20 %>px;"><img src='/assets/images/reply.png'/><a href="/board/view/<%=vo.no %>"><%=vo.title %></a></td>
 							<% } %>
 							<td><%=vo.User.name %></td>
 							<td><%=vo.hit %></td>
