@@ -26,11 +26,11 @@ module.exports = {
 
             const storeDirectory = path.join(path.dirname(require.main.filename),
                 process.env.STATIC_RESOURCES_DIRECTORY, 
-                process.env.GALLRY_STORE_LOCATION);
+                process.env.UPLOADIMAGE_STORE_LOCATION);
             console.log("storeDirectory: " + storeDirectory);
 
             const url = path.join(
-                process.env.GALLRY_STORE_LOCATION,
+                process.env.UPLOADIMAGE_STORE_LOCATION,
                 file.filename
             ) + path.extname(file.originalname);
             console.log("url: " + url)
